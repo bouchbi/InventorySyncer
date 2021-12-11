@@ -1,0 +1,16 @@
+name: InventorySyncer
+version: '1.0'
+main: fr.alcanderia.plugin.inventorysyncer.InventorySyncer
+api-version: 1.16
+prefix: InventorySyncer
+authors: [ MaximeLeBonniec, bouchbi_ ]
+description: InventorySyncer is a minecraft plugin to sync inventory between many servers. It works as a bridge with SQL connection.
+commands:
+  syncInv:
+    description: SyncInv is a command to force the Sync of a player's inventory
+    usage: /syncinv <player>
+    permission: inventorySyncer.syncInv
+  writeInv:
+    description: WriteInv is a command to force write a pLayer's inventory into the database
+    usage: /writeinv <player>
+    permission: inventorySyncer.writeInv

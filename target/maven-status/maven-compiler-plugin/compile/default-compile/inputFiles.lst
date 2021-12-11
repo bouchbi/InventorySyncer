@@ -1,0 +1,9 @@
+C:\Users\Mil_Somn\Desktop\Alcanderia Workspace\plugins\InventorySync\src\main\java\fr\alcanderia\plugin\inventorysyncer\event\ListenPlayers.java
+C:\Users\Mil_Somn\Desktop\Alcanderia Workspace\plugins\InventorySync\src\main\java\fr\alcanderia\plugin\inventorysyncer\commands\CommandSyncInv.java
+C:\Users\Mil_Somn\Desktop\Alcanderia Workspace\plugins\InventorySync\src\main\java\fr\alcanderia\plugin\inventorysyncer\services\InventoryReader.java
+C:\Users\Mil_Somn\Desktop\Alcanderia Workspace\plugins\InventorySync\src\main\java\fr\alcanderia\plugin\inventorysyncer\network\MySQLConnector.java
+C:\Users\Mil_Somn\Desktop\Alcanderia Workspace\plugins\InventorySync\src\main\java\fr\alcanderia\plugin\inventorysyncer\InventorySyncer.java
+C:\Users\Mil_Somn\Desktop\Alcanderia Workspace\plugins\InventorySync\src\main\java\fr\alcanderia\plugin\inventorysyncer\services\Parser.java
+C:\Users\Mil_Somn\Desktop\Alcanderia Workspace\plugins\InventorySync\src\main\java\fr\alcanderia\plugin\inventorysyncer\ConfigHandler.java
+C:\Users\Mil_Somn\Desktop\Alcanderia Workspace\plugins\InventorySync\src\main\java\fr\alcanderia\plugin\inventorysyncer\services\InventoryWriter.java
+C:\Users\Mil_Somn\Desktop\Alcanderia Workspace\plugins\InventorySync\src\main\java\fr\alcanderia\plugin\inventorysyncer\commands\CommandWriteInv.java
