@@ -22,12 +22,12 @@ public class ListenPlayers implements Listener {
 	
 	@EventHandler
 	public static void onPlayerJoin(PlayerJoinEvent e) {
-		if (InventorySyncer.getConfiguration().getBoolean("enablePickUpOnSync")) {
+		if (!InventorySyncer.getConfiguration().getBoolean("enablePickUpOnSync")) {
 			e.getPlayer().setCanPickupItems(false);
 		}
 		
 		InventoryReader.readInvAndApply(e.getPlayer(), Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql"));
-		if (InventorySyncer.getConfiguration().getBoolean("enablePickUpOnSync")) {
+		if (!InventorySyncer.getConfiguration().getBoolean("enablePickUpOnSync")) {
 			e.getPlayer().setCanPickupItems(true);
 		}
 		
