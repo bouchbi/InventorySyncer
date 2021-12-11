@@ -1,9 +1,0 @@
-fr\alcanderia\plugin\inventorysyncer\event\ListenPlayers.class
-fr\alcanderia\plugin\inventorysyncer\services\InventoryReader.class
-fr\alcanderia\plugin\inventorysyncer\commands\CommandWriteInv.class
-fr\alcanderia\plugin\inventorysyncer\services\InventoryWriter.class
-fr\alcanderia\plugin\inventorysyncer\commands\CommandSyncInv.class
-fr\alcanderia\plugin\inventorysyncer\ConfigHandler.class
-fr\alcanderia\plugin\inventorysyncer\services\Parser.class
-fr\alcanderia\plugin\inventorysyncer\InventorySyncer.class
-fr\alcanderia\plugin\inventorysyncer\network\MySQLConnector.class
