@@ -4,16 +4,42 @@
 #                                        #
 ##########################################
 
+#Select the data storage (.txt files in local or in database)
+#Valid values are 'file', 'mysql'
+dataStorage: 'file'
+
 #SQL Configuration
 sqlCredentials:
-  #Your host ex: XXX.XX.XXX.XX
-  host: yourhost
-  #The port toi connect to databse, often is 3306
-  port: portofyourdb
-  #User for the connexion
-  user: yourusername
+  #the IP address of your host, ex: XXX.XX.XXX.XX
+  host: 'yourhost'
+  #The port to connect to the database, commonly 3306
+  port: 'portofyourdb'
+  #Username for the connexion
+  user: 'username'
   #Password for the connexion
-  password: dbpassword
+  password: 'password'
   #Name of the database
-  dbName: nameofyourdb
+  dbName: 'dbname'
+  #Name of the table created by InventorySyncer
+  dbTableName: 'IS_Inventories'
 
+#Parameters for the synchronization
+syncParameters:
+  #The following parameters can be either true or false
+  syncItems: true
+  syncFoodLevel: true
+  syncSaturation: true
+  syncHealth: true
+  #The two following parameters are different,
+  #SyncXpLevel stores the experience LEVEL of the player
+  #Whereas syncXP simply stores the xp BAR PROGRESSION (the xp you have in your current level)
+  #Please set both to true if you want a proper synchronization of player's xp
+  syncXPLevel: true
+  syncXP: true
+  #
+  syncEffects: true
+
+#Whether a player can pick up items while the plugin is synchronizing his inventory
+#/!\ WARNING : When the plugin synchronizes an inventory, it clears it completely /!\
+#Enabling this would cause items loss issues
+enablePickUpOnSync: false
