@@ -8,6 +8,7 @@ import java.util.*;
 import java.util.logging.*;
 
 public class MySQLConnector {
+	
 	private static final Logger     logger      = InventorySyncer.getInstance().getLogger();
 	static final         String     DB_url      = "jdbc:mysql://" + InventorySyncer.getConfiguration().getString("sqlCredentials.host") + ":" + InventorySyncer.getConfiguration().getString("sqlCredentials.port") + "/" + InventorySyncer.getConfiguration().getString("sqlCredentials.dbName") + "?serverTimezone=UTC";
 	static final         String     DB_user     = InventorySyncer.getConfiguration().getString("sqlCredentials.user");
@@ -19,34 +20,35 @@ public class MySQLConnector {
 		if (tabName != null) {
 			try {
 				Statement stmt = con.createStatement();
-				Throwable var1 = null;
 				
 				try {
 					String sql = "CREATE TABLE " + tabName + "(id VARCHAR(40) not NULL,  inv VARCHAR(50000) DEFAULT NULL)";
 					stmt.executeUpdate(sql);
 					logger.info("Successfully created table in given database");
-				} catch (Throwable var11) {
-					var1 = var11;
-					throw var11;
-				} finally {
+				}
+				catch (SQLException e) {
+					logger.warning("error creating table in database");
+					e.printStackTrace();
+				}
+				finally {
 					if (stmt != null) {
-						if (var1 != null) {
-							try {
-								stmt.close();
-							} catch (Throwable var10) {
-								var1.addSuppressed(var10);
-							}
-						} else {
+						try {
 							stmt.close();
+						}
+						catch (SQLException e) {
+							logger.warning("cannot close statement");
+							e.printStackTrace();
 						}
 					}
 					
 				}
-			} catch (SQLException var13) {
-				logger.warning("Error creating table in given database");
-				var13.printStackTrace();
 			}
-		} else {
+			catch (SQLException e) {
+				logger.warning("Error creating table in given database");
+				e.printStackTrace();
+			}
+		}
+		else {
 			logger.warning("Cannot create table in given database, check for existing field 'dbTableName' in config");
 		}
 		
@@ -55,83 +57,78 @@ public class MySQLConnector {
 	public static String getUserInv(UUID id) {
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM " + tabName);
-			Throwable var2 = null;
 			
 			try {
 				ResultSet rs = ps.executeQuery();
-				Throwable var4 = null;
 				
 				try {
 					String inv = null;
 					
-					while(true) {
-						String name;
-						if (rs.next()) {
-							name = rs.getString("id");
-							if (!Objects.equals(name, id.toString())) {
-								continue;
-							}
-							
-							inv = rs.getString("inv");
+					String name;
+					while (rs.next()) {
+						name = rs.getString("id");
+						if (!Objects.equals(name, id.toString())) {
+							continue;
 						}
 						
-						if (inv == null) {
-							logger.warning("Inventory of player " + id + "(" + Bukkit.getPlayer(id).getName() + ") is not saved in database");
-						}
-						
-						name = inv;
-						return name;
+						inv = rs.getString("inv");
 					}
-				} catch (Throwable var31) {
-					var4 = var31;
-					throw var31;
-				} finally {
+					
+					if (inv == null) {
+						logger.warning("Inventory of player " + id + "(" + Bukkit.getPlayer(id).getName() + ") is not saved in database");
+					}
+					
+					return inv;
+				}
+				catch (SQLException e) {
+					logger.warning("Cannot get player " + id + "(" + Bukkit.getPlayer(id).getName() + ") inventory in database");
+					e.printStackTrace();
+				}
+				finally {
 					if (rs != null) {
-						if (var4 != null) {
-							try {
-								rs.close();
-							} catch (Throwable var30) {
-								var4.addSuppressed(var30);
-							}
-						} else {
+						try {
 							rs.close();
+						}
+						catch (SQLException e) {
+							logger.warning("cannot close statement");
+							e.printStackTrace();
 						}
 					}
 					
 				}
-			} catch (Throwable var33) {
-				var2 = var33;
-				throw var33;
-			} finally {
+			}
+			catch (SQLException e) {
+				logger.warning("cannot execute query");
+				e.printStackTrace();
+			}
+			finally {
 				if (ps != null) {
-					if (var2 != null) {
-						try {
-							ps.close();
-						} catch (Throwable var29) {
-							var2.addSuppressed(var29);
-						}
-					} else {
+					try {
 						ps.close();
+					}
+					catch (SQLException e) {
+						logger.warning("cannot close statement");
+						e.printStackTrace();
 					}
 				}
 				
 			}
-		} catch (SQLException var35) {
+		}
+		catch (SQLException e) {
 			logger.warning("Unable to read player " + id + "(" + Bukkit.getPlayer(id).getName() + ") inventory from database");
-			var35.printStackTrace();
+			e.printStackTrace();
 			return null;
 		}
+		return null;
 	}
 	
 	public static boolean checkExistingInv(UUID id) {
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM " + tabName);
-			Throwable var2 = null;
 			
-			boolean var6;
+			boolean bool;
 			try {
 				ResultSet rs = ps.executeQuery();
-				Throwable var4 = null;
 				
 				try {
 					if (!rs.next()) {
@@ -139,98 +136,102 @@ public class MySQLConnector {
 					}
 					
 					String name = rs.getString("id");
-					var6 = Objects.equals(name, id.toString());
-				} catch (Throwable var34) {
-					var4 = var34;
-					throw var34;
-				} finally {
+					bool = Objects.equals(name, id.toString());
+				}
+				catch (SQLException e) {
+					logger.warning("cannot check user inv existence for " + id + " (" + Bukkit.getPlayer(id).getName() + ")");
+					e.printStackTrace();
+					return false;
+				}
+				finally {
 					if (rs != null) {
-						if (var4 != null) {
-							try {
-								rs.close();
-							} catch (Throwable var33) {
-								var4.addSuppressed(var33);
-							}
-						} else {
+						try {
 							rs.close();
+						}
+						catch (SQLException e) {
+							logger.warning("cannot close statement");
+							e.printStackTrace();
 						}
 					}
 					
 				}
-			} catch (Throwable var36) {
-				var2 = var36;
-				throw var36;
-			} finally {
+			}
+			catch (SQLException e) {
+				logger.warning("cannot check user inv existence for " + id + " (" + Bukkit.getPlayer(id).getName() + ")");
+				e.printStackTrace();
+				return false;
+			}
+			finally {
 				if (ps != null) {
-					if (var2 != null) {
-						try {
-							ps.close();
-						} catch (Throwable var32) {
-							var2.addSuppressed(var32);
-						}
-					} else {
+					try {
 						ps.close();
 					}
+					catch (SQLException e) {
+						logger.warning("cannot close statement");
+						e.printStackTrace();
+					}
 				}
-				
 			}
-			
-			return var6;
-		} catch (SQLException var38) {
+		}
+		catch (SQLException e) {
 			logger.warning("Unable to check if player " + id + "(" + Bukkit.getPlayer(id).getName() + ") inventory exists in table " + tabName + " in database");
-			var38.printStackTrace();
+			e.printStackTrace();
 			return false;
 		}
+		return false;
 	}
 	
 	public static void writeUserInv(UUID id, String string) {
-		ResultSet rs = null;
-		int candidateID = 0;
-		String sqlInsert = "INSERT INTO " + tabName + "(id, inv)VALUES(?, ?)";
-		String sqlUpdate = "UPDATE " + tabName + " SET inv = ? WHERE id = ?";
+		ResultSet rs          = null;
+		int       candidateID = 0;
+		String    sqlInsert   = "INSERT INTO " + tabName + "(id, inv)VALUES(?, ?)";
+		String    sqlUpdate   = "UPDATE " + tabName + " SET inv = ? WHERE id = ?";
 		
 		try {
 			PreparedStatement pst = con.prepareStatement(checkExistingInv(id) ? sqlUpdate : sqlInsert);
-			Throwable var7 = null;
 			
 			try {
 				if (checkExistingInv(id)) {
 					pst.setString(1, string);
 					pst.setString(2, id.toString());
-				} else {
+				}
+				else {
 					pst.setString(1, id.toString());
 					pst.setString(2, string);
 				}
 				
 				pst.executeUpdate();
-			} catch (Throwable var31) {
-				var7 = var31;
-				throw var31;
-			} finally {
+			}
+			catch (SQLException e) {
+				logger.warning("cannot write inventory for player " + id + " (" + Bukkit.getPlayer(id).getName() + ")");
+				e.printStackTrace();
+			}
+			finally {
 				if (pst != null) {
-					if (var7 != null) {
-						try {
-							pst.close();
-						} catch (Throwable var30) {
-							var7.addSuppressed(var30);
-						}
-					} else {
+					try {
 						pst.close();
 					}
+					catch (SQLException e) {
+						logger.warning("cannot close statement");
+						e.printStackTrace();
+					}
 				}
-				
 			}
-		} catch (SQLException var33) {
+		}
+		catch (
+		  SQLException e) {
 			logger.warning("Error writing player " + id + " (" + Bukkit.getPlayer(id).getName() + ") to database");
-			var33.printStackTrace();
-		} finally {
+			e.printStackTrace();
+		}
+		finally {
 			try {
 				if (rs != null) {
-					((ResultSet)rs).close();
+					((ResultSet) rs).close();
 				}
-			} catch (SQLException var29) {
+			}
+			catch (SQLException e) {
 				logger.warning("Error closing Statement");
-				var29.printStackTrace();
+				e.printStackTrace();
 			}
 			
 		}
@@ -238,24 +239,30 @@ public class MySQLConnector {
 	}
 	
 	public static void initConnexion() {
-		try {
-			con = DriverManager.getConnection(DB_url, DB_user, DB_password);
-			logger.info("Successfully connected to the given database");
-		} catch (SQLException var2) {
-			logger.warning("Error connecting to database, check the given information in the config");
-			var2.printStackTrace();
-		}
+		openConnexion();
 		
 		try {
 			if (!checkTableExistence(tabName)) {
 				logger.info("Table not found in database, will attempt to create one");
 				createTable();
 			}
-		} catch (SQLException var1) {
+		}
+		catch (SQLException var1) {
 			logger.warning("Unable to check table existence in database");
 			var1.printStackTrace();
 		}
 		
+	}
+	
+	public static void openConnexion() {
+		try {
+			con = DriverManager.getConnection(DB_url, DB_user, DB_password);
+			logger.info("Successfully connected to the given database");
+		}
+		catch (SQLException e) {
+			logger.warning("Error connecting to database, check the given information in the config");
+			e.printStackTrace();
+		}
 	}
 	
 	public static void closeConnexion() {
@@ -264,7 +271,8 @@ public class MySQLConnector {
 				con.close();
 				logger.info("Successfully disconnected from database");
 			}
-		} catch (SQLException var1) {
+		}
+		catch (SQLException var1) {
 			logger.warning("Unable to close connexion with database");
 			var1.printStackTrace();
 		}
@@ -273,7 +281,8 @@ public class MySQLConnector {
 	
 	private static boolean checkTableExistence(String tableName) throws SQLException {
 		DatabaseMetaData dbmt = con.getMetaData();
-		ResultSet res = dbmt.getTables((String)null, (String)null, tableName, new String[]{"TABLE"});
+		ResultSet        res  = dbmt.getTables((String) null, (String) null, tableName, new String[] { "TABLE" });
 		return res.next();
 	}
+	
 }
