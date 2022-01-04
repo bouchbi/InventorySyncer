@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="Reopen connexion if expired on task">
+    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="Remapped errors">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/network/MySQLConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/network/MySQLConnector.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +85,7 @@
       <workItem from="1639597443186" duration="1542000" />
       <workItem from="1640435432733" duration="1149000" />
       <workItem from="1641210793141" duration="2249000" />
-      <workItem from="1641274351564" duration="3593000" />
+      <workItem from="1641274351564" duration="3748000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1638564455181</created>
@@ -116,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1641233060253</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Remapped errors">
+      <created>1641279696548</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1641279696548</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +151,7 @@
     <MESSAGE value="workspace" />
     <MESSAGE value="Items Pick Up prevention" />
     <MESSAGE value="Reopen connexion if expired on task" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reopen connexion if expired on task" />
+    <MESSAGE value="Remapped errors" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remapped errors" />
   </component>
 </project>

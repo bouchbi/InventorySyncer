@@ -17,6 +17,8 @@ public class MySQLConnector {
 	private static       Connection con;
 	
 	public static void createTable() {
+		reopenIfClosed();
+		
 		if (tabName != null) {
 			try {
 				Statement stmt = con.createStatement();
@@ -55,6 +57,8 @@ public class MySQLConnector {
 	}
 	
 	public static String getUserInv(UUID id) {
+		reopenIfClosed();
+		
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM " + tabName);
 			
@@ -123,6 +127,8 @@ public class MySQLConnector {
 	}
 	
 	public static boolean checkExistingInv(UUID id) {
+		reopenIfClosed();
+		
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM " + tabName);
 			
@@ -182,6 +188,8 @@ public class MySQLConnector {
 	}
 	
 	public static void writeUserInv(UUID id, String string) {
+		reopenIfClosed();
+		
 		ResultSet rs          = null;
 		int       candidateID = 0;
 		String    sqlInsert   = "INSERT INTO " + tabName + "(id, inv)VALUES(?, ?)";
@@ -236,6 +244,18 @@ public class MySQLConnector {
 			
 		}
 		
+	}
+	
+	public static void reopenIfClosed() {
+		try {
+			if (con.isClosed()) {
+				logger.info("connexion closed, trying to reopen to execute task");
+				openConnexion();
+			}
+		} catch (SQLException e) {
+			logger.warning("cannot check connexion status");
+			e.printStackTrace();
+		}
 	}
 	
 	public static void initConnexion() {
