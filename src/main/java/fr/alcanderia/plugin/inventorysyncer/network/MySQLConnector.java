@@ -132,17 +132,16 @@ public class MySQLConnector {
 		try {
 			PreparedStatement ps = con.prepareStatement("SELECT * FROM " + tabName);
 			
-			boolean bool;
 			try {
 				ResultSet rs = ps.executeQuery();
 				
 				try {
-					if (!rs.next()) {
-						return false;
+					while(rs.next()) {
+						if (!Objects.equals(rs.getString("id"), id.toString())) {
+							continue;
+						}
+						return true;
 					}
-					
-					String name = rs.getString("id");
-					bool = Objects.equals(name, id.toString());
 				}
 				catch (SQLException e) {
 					logger.warning("cannot check user inv existence for " + id + " (" + Bukkit.getPlayer(id).getName() + ")");
