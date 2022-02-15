@@ -31,4 +31,5 @@ public class InventoryWriter {
 		float watchStop = (float)System.currentTimeMillis();
 		InventorySyncer.getInstance().getLogger().info("Inv of player " + id + " (" + player.getName() + ") saved successfully to database, took " + (watchStop - watchStart) + "ms");
 	}
+	
 }

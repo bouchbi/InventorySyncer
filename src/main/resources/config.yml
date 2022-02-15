@@ -23,6 +23,9 @@ sqlCredentials:
   #Name of the table created by InventorySyncer
   dbTableName: 'IS_Inventories'
 
+#Whether to save inventory of all players when stopping server
+saveAllOnServerStop: true
+
 #Parameters for the synchronization
 syncParameters:
   #The following parameters can be either true or false

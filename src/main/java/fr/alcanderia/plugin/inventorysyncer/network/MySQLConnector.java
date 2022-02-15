@@ -136,7 +136,7 @@ public class MySQLConnector {
 				ResultSet rs = ps.executeQuery();
 				
 				try {
-					while(rs.next()) {
+					while (rs.next()) {
 						if (!Objects.equals(rs.getString("id"), id.toString())) {
 							continue;
 						}
@@ -251,7 +251,8 @@ public class MySQLConnector {
 				logger.info("connexion closed, trying to reopen to execute task");
 				openConnexion();
 			}
-		} catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			logger.warning("cannot check connexion status");
 			e.printStackTrace();
 		}

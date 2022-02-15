@@ -3,8 +3,11 @@ package fr.alcanderia.plugin.inventorysyncer;
 import fr.alcanderia.plugin.inventorysyncer.commands.*;
 import fr.alcanderia.plugin.inventorysyncer.event.*;
 import fr.alcanderia.plugin.inventorysyncer.network.*;
+import fr.alcanderia.plugin.inventorysyncer.services.*;
+import org.bukkit.*;
 import org.bukkit.plugin.java.*;
 
+import java.io.*;
 import java.util.*;
 
 public class InventorySyncer extends JavaPlugin {
@@ -30,6 +33,25 @@ public class InventorySyncer extends JavaPlugin {
 	}
 	
 	public void onDisable() {
+		if (config.getBoolean("saveAllOnServerStop")) {
+			if (Objects.equals(config.getString("dataStorage"), "mysql")) {
+				this.getLogger().info("initializing inventory syncing for all players before stopping server");
+				Bukkit.getOnlinePlayers().forEach(InventoryWriter::writeInvToDB);
+			}
+			else if (Objects.equals(config.getString("dataStorage"), "file")) {
+				this.getLogger().info("initializing inventory syncing for all players before stopping server");
+				Bukkit.getOnlinePlayers().forEach(player -> {
+					try {
+						InventoryWriter.writeInvToFile(player);
+					}
+					catch (IOException e) {
+						this.getLogger().warning("failed to write inv of player " + player.getUniqueId() + " (" + player.getName() + ") to file");
+						e.printStackTrace();
+					}
+				});
+			}
+		}
+		
 		if (Objects.equals(config.getString("dataStorage"), "mysql")) {
 			MySQLConnector.closeConnexion();
 		}
