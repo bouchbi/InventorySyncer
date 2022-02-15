@@ -3,6 +3,7 @@ package fr.alcanderia.plugin.inventorysyncer.services;
 import fr.alcanderia.plugin.inventorysyncer.*;
 import org.bukkit.*;
 import org.bukkit.entity.*;
+import org.bukkit.inventory.*;
 import org.bukkit.util.io.*;
 import org.yaml.snakeyaml.external.biz.base64Coder.*;
 
@@ -19,10 +20,10 @@ public class Parser {
 	public static final String        LabelHealth     = "PlayerHealth";
 	public static final String        LabelEffects    = "PlayerEffects";
 	
-	public static String Stringify(Player player) {
+	public static String StringifyInv(Player player) {
 		StringBuilder inv = new StringBuilder();
 		if (config.getBoolean("syncParameters.syncItems")) {
-			for(int i = 0; i < player.getInventory().getSize(); ++i) {
+			for (int i = 0; i < player.getInventory().getSize(); ++i) {
 				if (player.getInventory().getItem(i) != null && player.getInventory().getItem(i).getType() != Material.AIR) {
 					String stack;
 					try {
@@ -74,8 +75,33 @@ public class Parser {
 		return inv.toString();
 	}
 	
-	public static String readFile(UUID id) throws IOException {
-		File file = new File(InventorySyncer.getInstance().getDataFolder(), id + ".txt");
+	public static String StringifyEC(Player pLayer) {
+		StringBuilder inv = new StringBuilder();
+		if (config.getBoolean("syncParameters.syncEnderChest")) {
+			Inventory ec = pLayer.getEnderChest();
+			for (int i = 0; i < ec.getSize(); i++) {
+				if (ec.getItem(i) != null && ec.getItem(i).getType() != Material.AIR) {
+					String stack;
+					try {
+						ByteArrayOutputStream    outputStream = new ByteArrayOutputStream();
+						BukkitObjectOutputStream dataOutput   = new BukkitObjectOutputStream(outputStream);
+						dataOutput.writeObject(ec.getItem(i));
+						stack = Base64Coder.encodeLines(outputStream.toByteArray());
+						dataOutput.close();
+					} catch (Exception var7) {
+						throw new IllegalStateException("Unable to save item stacks", var7);
+					}
+					
+					inv.append(i + "$" + stack + ";");
+				}
+			}
+		}
+		
+		return inv.toString();
+	}
+	
+	public static String readFile(UUID id, boolean EC) throws IOException {
+		File file = new File(InventorySyncer.getInstance().getDataFolder(), id + (EC ? "_ender_chest.txt" : ".txt"));
 		if (file.exists()) {
 			BufferedReader reader = Files.newBufferedReader(Paths.get(file.toURI()));
 			

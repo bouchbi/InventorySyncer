@@ -1,5 +1,6 @@
 package fr.alcanderia.plugin.inventorysyncer.network;
 
+import com.sun.istack.internal.*;
 import fr.alcanderia.plugin.inventorysyncer.*;
 import org.bukkit.*;
 
@@ -13,12 +14,11 @@ public class MySQLConnector {
 	static final         String     DB_url      = "jdbc:mysql://" + InventorySyncer.getConfiguration().getString("sqlCredentials.host") + ":" + InventorySyncer.getConfiguration().getString("sqlCredentials.port") + "/" + InventorySyncer.getConfiguration().getString("sqlCredentials.dbName") + "?serverTimezone=UTC";
 	static final         String     DB_user     = InventorySyncer.getConfiguration().getString("sqlCredentials.user");
 	static final         String     DB_password = InventorySyncer.getConfiguration().getString("sqlCredentials.password");
-	static               String     tabName     = InventorySyncer.getConfiguration().getString("sqlCredentials.dbTableName");
+	static               String     invTabName  = InventorySyncer.getConfiguration().getString("sqlCredentials.dbInvTableName");
+	static               String     ecTabName   = InventorySyncer.getConfiguration().getString("sqlCredentials.dbECTableName");
 	private static       Connection con;
 	
-	public static void createTable() {
-		reopenIfClosed();
-		
+	public static void createTable(String tabName) {
 		if (tabName != null) {
 			try {
 				Statement stmt = con.createStatement();
@@ -26,10 +26,10 @@ public class MySQLConnector {
 				try {
 					String sql = "CREATE TABLE " + tabName + "(id VARCHAR(40) not NULL,  inv VARCHAR(50000) DEFAULT NULL)";
 					stmt.executeUpdate(sql);
-					logger.info("Successfully created table in given database");
+					logger.info("Successfully created " + tabName + " table in given database");
 				}
 				catch (SQLException e) {
-					logger.warning("error creating table in database");
+					logger.warning("error creating table " + tabName + " in database");
 					e.printStackTrace();
 				}
 				finally {
@@ -51,12 +51,18 @@ public class MySQLConnector {
 			}
 		}
 		else {
-			logger.warning("Cannot create table in given database, check for existing field 'dbTableName' in config");
+			logger.warning("Cannot create table in given database, check for existing fields 'dbInvTableName' and 'sbECTableName' in config");
 		}
-		
 	}
 	
-	public static String getUserInv(UUID id) {
+	public static void createTables() {
+		reopenIfClosed();
+		
+		createTable(invTabName);
+		createTable(ecTabName);
+	}
+	
+	public static String getUserInv(UUID id, @NotNull String tabName) {
 		reopenIfClosed();
 		
 		try {
@@ -79,13 +85,13 @@ public class MySQLConnector {
 					}
 					
 					if (inv == null) {
-						logger.warning("Inventory of player " + id + "(" + Bukkit.getPlayer(id).getName() + ") is not saved in database");
+						logger.warning("Ec Inventory of player " + id + "(" + Bukkit.getPlayer(id).getName() + ") is not saved in database");
 					}
 					
 					return inv;
 				}
 				catch (SQLException e) {
-					logger.warning("Cannot get player " + id + "(" + Bukkit.getPlayer(id).getName() + ") inventory in database");
+					logger.warning("Cannot get player " + id + "(" + Bukkit.getPlayer(id).getName() + ") ec inventory in database");
 					e.printStackTrace();
 				}
 				finally {
@@ -119,14 +125,14 @@ public class MySQLConnector {
 			}
 		}
 		catch (SQLException e) {
-			logger.warning("Unable to read player " + id + "(" + Bukkit.getPlayer(id).getName() + ") inventory from database");
+			logger.warning("Unable to read player " + id + "(" + Bukkit.getPlayer(id).getName() + ") ec inventory from database");
 			e.printStackTrace();
 			return null;
 		}
 		return null;
 	}
 	
-	public static boolean checkExistingInv(UUID id) {
+	public static boolean checkExistingInv(UUID id, @NotNull String tabName) {
 		reopenIfClosed();
 		
 		try {
@@ -144,7 +150,7 @@ public class MySQLConnector {
 					}
 				}
 				catch (SQLException e) {
-					logger.warning("cannot check user inv existence for " + id + " (" + Bukkit.getPlayer(id).getName() + ")");
+					logger.warning("cannot check user inv existence for " + id + " (" + Bukkit.getPlayer(id).getName() + ") in table" + tabName);
 					e.printStackTrace();
 					return false;
 				}
@@ -162,7 +168,7 @@ public class MySQLConnector {
 				}
 			}
 			catch (SQLException e) {
-				logger.warning("cannot check user inv existence for " + id + " (" + Bukkit.getPlayer(id).getName() + ")");
+				logger.warning("cannot check user inv existence for " + id + " (" + Bukkit.getPlayer(id).getName() + ") in table" + tabName);
 				e.printStackTrace();
 				return false;
 			}
@@ -186,7 +192,7 @@ public class MySQLConnector {
 		return false;
 	}
 	
-	public static void writeUserInv(UUID id, String string) {
+	public static void writeInv(UUID id, String string, @NotNull String tabName) {
 		reopenIfClosed();
 		
 		ResultSet rs          = null;
@@ -195,10 +201,10 @@ public class MySQLConnector {
 		String    sqlUpdate   = "UPDATE " + tabName + " SET inv = ? WHERE id = ?";
 		
 		try {
-			PreparedStatement pst = con.prepareStatement(checkExistingInv(id) ? sqlUpdate : sqlInsert);
+			PreparedStatement pst = con.prepareStatement(checkExistingInv(id, tabName) ? sqlUpdate : sqlInsert);
 			
 			try {
-				if (checkExistingInv(id)) {
+				if (checkExistingInv(id, tabName)) {
 					pst.setString(1, string);
 					pst.setString(2, id.toString());
 				}
@@ -227,7 +233,7 @@ public class MySQLConnector {
 		}
 		catch (
 		  SQLException e) {
-			logger.warning("Error writing player " + id + " (" + Bukkit.getPlayer(id).getName() + ") to database");
+			logger.warning("Error writing inventory for " + id + " (" + Bukkit.getPlayer(id).getName() + ") to database");
 			e.printStackTrace();
 		}
 		finally {
@@ -262,9 +268,13 @@ public class MySQLConnector {
 		openConnexion();
 		
 		try {
-			if (!checkTableExistence(tabName)) {
-				logger.info("Table not found in database, will attempt to create one");
-				createTable();
+			if (!checkTableExistence(invTabName)) {
+				logger.info("Table " + invTabName + " not found in database, will attempt to create one");
+				createTable(invTabName);
+			}
+			if (!checkTableExistence(ecTabName)) {
+				logger.info("Table " + ecTabName + " not found in database, will attempt to create one");
+				createTable(ecTabName);
 			}
 		}
 		catch (SQLException var1) {

@@ -10,7 +10,7 @@ import java.util.*;
 public class InventoryWriter {
 	public static void writeInvToFile(Player player) throws IOException {
 		float  watchStart = (float)System.currentTimeMillis();
-		String json       = Parser.Stringify(player);
+		String json       = Parser.StringifyInv(player);
 		UUID   id         = player.getUniqueId();
 		File   file       = new File(InventorySyncer.getInstance().getDataFolder(), id + ".txt");
 		file.getParentFile().mkdir();
@@ -23,13 +23,37 @@ public class InventoryWriter {
 		InventorySyncer.getInstance().getLogger().info("Inv of player " + id + " (" + player.getName() + ") saved successfully to file, took " + (watchStop - watchStart) + "ms");
 	}
 	
+	public static void writeECToFile(Player player) throws IOException {
+		float  watchStart = (float)System.currentTimeMillis();
+		String json       = Parser.StringifyEC(player);
+		UUID   id         = player.getUniqueId();
+		File   file       = new File(InventorySyncer.getInstance().getDataFolder(), id + "_ender_chest.txt");
+		file.getParentFile().mkdir();
+		file.createNewFile();
+		Writer writer = new FileWriter(file, false);
+		writer.write(json);
+		writer.flush();
+		writer.close();
+		float watchStop = (float)System.currentTimeMillis();
+		InventorySyncer.getInstance().getLogger().info("EC of player " + id + " (" + player.getName() + ") saved successfully to file, took " + (watchStop - watchStart) + "ms");
+	}
+	
 	public static void writeInvToDB(Player player) {
 		float watchStart = (float)System.currentTimeMillis();
-		String json = Parser.Stringify(player);
+		String json = Parser.StringifyInv(player);
 		UUID id = player.getUniqueId();
-		MySQLConnector.writeUserInv(id, json);
+		MySQLConnector.writeInv(id, json, InventorySyncer.getConfiguration().getString("sqlCredentials.dbInvTableName"));
 		float watchStop = (float)System.currentTimeMillis();
 		InventorySyncer.getInstance().getLogger().info("Inv of player " + id + " (" + player.getName() + ") saved successfully to database, took " + (watchStop - watchStart) + "ms");
+	}
+	
+	public static void writeECToDB(Player player) {
+		float watchStart = (float)System.currentTimeMillis();
+		String json = Parser.StringifyEC(player);
+		UUID id = player.getUniqueId();
+		MySQLConnector.writeInv(id, json, InventorySyncer.getConfiguration().getString("sqlCredentials.dbECTableName"));
+		float watchStop = (float)System.currentTimeMillis();
+		InventorySyncer.getInstance().getLogger().info("EC of player " + id + " (" + player.getName() + ") saved successfully to database, took " + (watchStop - watchStart) + "ms");
 	}
 	
 }

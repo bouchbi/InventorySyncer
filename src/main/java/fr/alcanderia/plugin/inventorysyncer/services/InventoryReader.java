@@ -1,5 +1,6 @@
 package fr.alcanderia.plugin.inventorysyncer.services;
 
+import com.sun.istack.internal.*;
 import fr.alcanderia.plugin.inventorysyncer.*;
 import fr.alcanderia.plugin.inventorysyncer.network.*;
 import org.apache.commons.lang.*;
@@ -14,13 +15,58 @@ import java.util.*;
 
 public class InventoryReader {
 	
+	public static boolean readECInvAndApply(Player player, boolean toDB) {
+		try {
+			String inv = null;
+			if (!toDB) {
+				inv = Parser.readFile(player.getUniqueId(), true);
+			} else {
+				inv = MySQLConnector.getUserInv(player.getUniqueId(), InventorySyncer.getConfiguration().getString("sqlCredentials.dbECTableName"));
+			}
+			
+			if (inv != null) {
+				long watchStart = System.currentTimeMillis();
+				player.getInventory().clear();
+				inv = StringUtils.removeEnd(inv, ";");
+				String[] slots = inv.split(";");
+				int length = slots.length;
+				
+				for (int i = 0; i < length; i++) {
+					String slot = slots[i];
+					ItemStack stack;
+					try {
+						ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(slot.split("\\$")[1]));
+						BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
+						stack = (ItemStack)dataInput.readObject();
+						dataInput.close();
+					} catch (ClassNotFoundException var13) {
+						throw new IOException("Unable to decode class type", var13);
+					}
+					
+					player.getEnderChest().setItem(Integer.parseInt(slot.split("\\$")[0]), stack);
+				}
+				
+				long watchEnd = System.currentTimeMillis();
+				InventorySyncer.getInstance().getLogger().info("EC Inventory of player " + player.getUniqueId() + " (" + player.getName() + ") restored successfully, took " + (watchEnd - watchStart) + "ms");
+			} else {
+				InventorySyncer.getInstance().getLogger().warning("EC Inventory of player " + player.getUniqueId() + " (" + player.getName() + ") is null");
+			}
+			
+			return true;
+		} catch (IOException var15) {
+			InventorySyncer.getInstance().getLogger().warning("Error reading player " + player.getUniqueId() + " ec inv");
+			var15.printStackTrace();
+			return false;
+		}
+	}
+	
 	public static boolean readInvAndApply(Player player, boolean toDB) {
 		try {
 			String inv = null;
 			if (!toDB) {
-				inv = Parser.readFile(player.getUniqueId());
+				inv = Parser.readFile(player.getUniqueId(), false);
 			} else {
-				inv = MySQLConnector.getUserInv(player.getUniqueId());
+				inv = MySQLConnector.getUserInv(player.getUniqueId(), InventorySyncer.getConfiguration().getString("sqlCredentials.dbInvTableName"));
 			}
 			
 			if (inv != null) {

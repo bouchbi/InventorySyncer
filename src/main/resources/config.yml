@@ -20,8 +20,10 @@ sqlCredentials:
   password: 'password'
   #Name of the database
   dbName: 'dbname'
-  #Name of the table created by InventorySyncer
-  dbTableName: 'IS_Inventories'
+  #Name of the table created by InventorySyncer to save inventories
+  dbInvTableName: 'IS_Inventories'
+  #Name of the table created by InventorySyncer to save ender chests
+  dbECTableName: 'IS_EnderChests'
 
 #Whether to save inventory of all players when stopping server
 saveAllOnServerStop: true
@@ -33,6 +35,7 @@ syncParameters:
   syncFoodLevel: true
   syncSaturation: true
   syncHealth: true
+  syncEnderChest: true
   #The two following parameters are different,
   #SyncXpLevel stores the experience LEVEL of the player
   #Whereas syncXP simply stores the xp BAR PROGRESSION (the xp you have in your current level)
