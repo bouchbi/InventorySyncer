@@ -6,12 +6,12 @@
 
     <groupId>fr.lebonniec.maxime</groupId>
     <artifactId>InventorySyncer</artifactId>
-    <version>1.0.2</version>
+    <version>1.1.2</version>
     <packaging>jar</packaging>
 
     <name>InventorySyncer</name>
 
-    <description>InventorySyncer is a minecraft plugin to sync inventory between many servers. It works as a bridge with
+    <description>InventorySyncer is a minecraft plugin to sync inventory between servers. It works as a bridge with
         SQL connection.
     </description>
     <properties>

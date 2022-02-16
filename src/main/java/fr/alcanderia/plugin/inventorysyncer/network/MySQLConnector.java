@@ -1,6 +1,5 @@
 package fr.alcanderia.plugin.inventorysyncer.network;
 
-import com.sun.istack.internal.*;
 import fr.alcanderia.plugin.inventorysyncer.*;
 import org.bukkit.*;
 
@@ -62,7 +61,7 @@ public class MySQLConnector {
 		createTable(ecTabName);
 	}
 	
-	public static String getUserInv(UUID id, @NotNull String tabName) {
+	public static String getUserInv(UUID id, String tabName) {
 		reopenIfClosed();
 		
 		try {
@@ -132,7 +131,7 @@ public class MySQLConnector {
 		return null;
 	}
 	
-	public static boolean checkExistingInv(UUID id, @NotNull String tabName) {
+	public static boolean checkExistingInv(UUID id, String tabName) {
 		reopenIfClosed();
 		
 		try {
@@ -192,7 +191,7 @@ public class MySQLConnector {
 		return false;
 	}
 	
-	public static void writeInv(UUID id, String string, @NotNull String tabName) {
+	public static void writeInv(UUID id, String string, String tabName) {
 		reopenIfClosed();
 		
 		ResultSet rs          = null;

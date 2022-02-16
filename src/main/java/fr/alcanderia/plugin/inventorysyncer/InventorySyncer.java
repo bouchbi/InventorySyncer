@@ -23,6 +23,8 @@ public class InventorySyncer extends JavaPlugin {
 		config = new ConfigHandler(this);
 		this.getCommand("syncInv").setExecutor(new CommandSyncInv());
 		this.getCommand("writeInv").setExecutor(new CommandWriteInv());
+		this.getCommand("syncEC").setExecutor(new CommandSyncEC());
+		this.getCommand("writeEC").setExecutor(new CommandWriteEC());
 		this.reloadConfig();
 		INSTANCE = this;
 		if (Objects.equals(config.getString("dataStorage"), "mysql")) {

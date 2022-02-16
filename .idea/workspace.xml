@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="added invs save on server stop">
+    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="Ender chest sync (to complete w/ command)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncEC.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandWriteEC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/network/MySQLConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/network/MySQLConnector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/InventoryReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/InventoryReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/InventoryWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/InventoryWriter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -102,7 +103,9 @@
       <workItem from="1644431176880" duration="648000" />
       <workItem from="1644779431444" duration="376000" />
       <workItem from="1644921697873" duration="366000" />
-      <workItem from="1644956014309" duration="3556000" />
+      <workItem from="1644956014309" duration="3592000" />
+      <workItem from="1644999872763" duration="1797000" />
+      <workItem from="1645001964690" duration="10000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1638564455181</created>
@@ -160,7 +163,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644921950377</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Ender chest sync (to complete w/ command)">
+      <created>1644961285575</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1644961285575</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +203,7 @@
     <MESSAGE value="Reopen connexion for task if closed" />
     <MESSAGE value="fixed duplicated inv issue" />
     <MESSAGE value="added invs save on server stop" />
-    <option name="LAST_COMMIT_MESSAGE" value="added invs save on server stop" />
+    <MESSAGE value="Ender chest sync (to complete w/ command)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ender chest sync (to complete w/ command)" />
   </component>
 </project>

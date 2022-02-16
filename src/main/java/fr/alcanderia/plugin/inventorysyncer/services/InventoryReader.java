@@ -1,6 +1,5 @@
 package fr.alcanderia.plugin.inventorysyncer.services;
 
-import com.sun.istack.internal.*;
 import fr.alcanderia.plugin.inventorysyncer.*;
 import fr.alcanderia.plugin.inventorysyncer.network.*;
 import org.apache.commons.lang.*;
