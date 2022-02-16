@@ -11,8 +11,4 @@ public class MessageSender {
 	public static void sendMessage(CommandSender sender, String msg) {
 		sender.sendMessage(messagePrefix + msg);
 	}
-	
-	public static void sendGenericError(CommandSender sender) {
-		sender.sendMessage(messagePrefix + "There was an error processing this command, please check the console for further information");
-	}
 }

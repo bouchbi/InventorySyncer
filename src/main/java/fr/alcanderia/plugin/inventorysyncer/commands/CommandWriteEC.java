@@ -19,7 +19,7 @@ public class CommandWriteEC implements CommandExecutor {
 				player = Bukkit.getPlayer(strings[0]);
 			} catch (NullPointerException var8) {
 				InventorySyncer.getInstance().getLogger().warning("player not found");
-				MessageSender.sendMessage(player, "Player not found");
+				MessageSender.sendMessage(player, ChatColor.RED + "Player not found");
 			}
 			
 			assert player != null;
@@ -36,11 +36,10 @@ public class CommandWriteEC implements CommandExecutor {
 				var7.printStackTrace();
 			}
 			
-			MessageSender.sendMessage(player, "Successfully wrote player's ender chest inventory");
-			return true;
+			MessageSender.sendMessage(player, ChatColor.GREEN + "Successfully wrote player's ender chest inventory");
 		} else {
 			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /writeec <player>");
-			return false;
 		}
+		return true;
 	}
 }

@@ -12,14 +12,14 @@ import java.util.*;
 public class CommandWriteInv implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-		if (strings.length > 0) {
+		if (strings.length == 1) {
 			Player player = null;
 			
 			try {
 				player = Bukkit.getPlayer(strings[0]);
 			} catch (NullPointerException var8) {
 				InventorySyncer.getInstance().getLogger().warning("player not found");
-				MessageSender.sendMessage(player, "Player not found");
+				MessageSender.sendMessage(player, ChatColor.RED + "Player not found");
 			}
 			
 			assert player != null;
@@ -36,11 +36,10 @@ public class CommandWriteInv implements CommandExecutor {
 				var7.printStackTrace();
 			}
 			
-			MessageSender.sendMessage(player, "Successfully wrote player's inventory");
-			return true;
+			MessageSender.sendMessage(player, ChatColor.GREEN + "Successfully wrote player's inventory");
 		} else {
 			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /writeinv <player>");
-			return false;
 		}
+		return true;
 	}
 }

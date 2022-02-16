@@ -8,21 +8,25 @@ description: InventorySyncer is a minecraft plugin to sync inventory between man
 commands:
   reload:
     description: Reloads the plugin
-    usage: /InventorySyncer reload
+    usage: /inventorysyncer reload
     permission: inventorySyncer.reload
   syncInv:
     description: SyncInv is a command to force the Sync of a player's inventory
     usage: /syncinv <player>
+    aliases: [inventorysyncer syncinv]
     permission: inventorySyncer.syncInv
   writeInv:
     description: WriteInv is a command to force write a pLayer's inventory into the database
     usage: /writeinv <player>
+    aliases: [inventorysyncer writeinv]
     permission: inventorySyncer.writeInv
   syncEC:
     description: SyncEC is a command to force the Sync of a player's ender chest's inventory
     usage: /syncec <player>
+    aliases: [inventorysyncer syncec]
     permission: inventorySyncer.syncEC
   writeEC:
     description: WriteEC is a command to force write a pLayer's ender chest's inventory into the database
     usage: /writeec <player>
+    aliases: [inventorysyncer writeec]
     permission: inventorySyncer.writeEC

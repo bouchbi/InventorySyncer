@@ -18,20 +18,19 @@ public class CommandSyncEC implements CommandExecutor {
 				player = Bukkit.getPlayer(strings[0]);
 			} catch (NullPointerException var7) {
 				InventorySyncer.getInstance().getLogger().warning("player not found");
+				MessageSender.sendMessage(player, ChatColor.RED + "Player not found");
 			}
 			
 			assert player != null;
 			
 			if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readECInvAndApply(player, true) : InventoryReader.readECInvAndApply(player, false)) {
-				MessageSender.sendMessage(player, "Successfully sync player's ender chest");
-				return true;
+				MessageSender.sendMessage(player, ChatColor.GREEN + "Successfully sync player's ender chest");
 			} else {
-				MessageSender.sendMessage(player, "There was an error while attempting to sync ec, please check console for further information");
-				return false;
+				MessageSender.sendMessage(player, ChatColor.RED + "There was an error while attempting to sync ec, please check console for further information");
 			}
 		} else {
 			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /syncec <player>");
-			return false;
 		}
+		return true;
 	}
 }
