@@ -22,7 +22,7 @@ public class InventorySyncer extends JavaPlugin {
 	public void onEnable() {
 		this.getServer().getPluginManager().registerEvents(new ListenPlayers(), this);
 		config = new ConfigHandler(this);
-		this.getCommand("reload").setExecutor(new CommandReload());
+		this.getCommand("reloadISConfig").setExecutor(new CommandReload());
 		this.getCommand("syncInv").setExecutor(new CommandSyncInv());
 		this.getCommand("writeInv").setExecutor(new CommandWriteInv());
 		this.getCommand("syncEC").setExecutor(new CommandSyncEC());

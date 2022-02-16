@@ -6,27 +6,34 @@ prefix: InventorySyncer
 authors: [ MaximeLeBonniec, bouchbi_ ]
 description: InventorySyncer is a minecraft plugin to sync inventory between many servers. It works as a bridge with SQL connection.
 commands:
-  reload:
-    description: Reloads the plugin
-    usage: /inventorysyncer reload
+  reloadISConfig:
+    description: Reloads the plugin config
     permission: inventorySyncer.reload
   syncInv:
     description: SyncInv is a command to force the Sync of a player's inventory
-    usage: /syncinv <player>
-    aliases: [inventorysyncer syncinv]
     permission: inventorySyncer.syncInv
   writeInv:
     description: WriteInv is a command to force write a pLayer's inventory into the database
-    usage: /writeinv <player>
-    aliases: [inventorysyncer writeinv]
     permission: inventorySyncer.writeInv
   syncEC:
     description: SyncEC is a command to force the Sync of a player's ender chest's inventory
-    usage: /syncec <player>
-    aliases: [inventorysyncer syncec]
     permission: inventorySyncer.syncEC
   writeEC:
-    description: WriteEC is a command to force write a pLayer's ender chest's inventory into the database
-    usage: /writeec <player>
-    aliases: [inventorysyncer writeec]
+    description: WriteEC is a command to force write a player's ender chest's inventory into the database
     permission: inventorySyncer.writeEC
+permissions:
+  inventorySyncer.reload:
+    description: reload config file
+    default: op
+  inventorySyncer.syncInv:
+    description: sync a player's inventory
+    default: op
+  inventorySyncer.syncEC:
+    description: sync a player's ender chest
+    default: op
+  inventorySyncer.writeInv:
+    description: write a player's inventory
+    default: op
+  inventorySyncer.writeEC:
+    description: rite a player's ender chest
+    default: op

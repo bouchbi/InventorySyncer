@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="commands aliases + upgraded msg on command">
+    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="nullpointerexception in commands fixed + perms and commands">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncEC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncEC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncInv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncInv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandWriteEC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandWriteEC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandWriteInv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandWriteInv.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +104,7 @@
       <workItem from="1644921697873" duration="366000" />
       <workItem from="1644956014309" duration="3592000" />
       <workItem from="1644999872763" duration="1797000" />
-      <workItem from="1645001964690" duration="8096000" />
+      <workItem from="1645001964690" duration="11828000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1638564455181</created>
@@ -200,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645011773392</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="forgot version">
+      <created>1645011812685</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1645011812685</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +251,8 @@
     <MESSAGE value="Messages on command" />
     <MESSAGE value="command aliases + upgraded msg on command" />
     <MESSAGE value="commands aliases + upgraded msg on command" />
-    <option name="LAST_COMMIT_MESSAGE" value="commands aliases + upgraded msg on command" />
+    <MESSAGE value="forgot version" />
+    <MESSAGE value="nullpointerexception in commands fixed + perms and commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="nullpointerexception in commands fixed + perms and commands" />
   </component>
 </project>

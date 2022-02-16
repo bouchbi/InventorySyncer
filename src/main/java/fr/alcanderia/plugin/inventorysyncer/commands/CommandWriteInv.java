@@ -13,33 +13,34 @@ public class CommandWriteInv implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 		if (strings.length == 1) {
-			Player player = null;
-			
-			try {
-				player = Bukkit.getPlayer(strings[0]);
-			} catch (NullPointerException var8) {
-				InventorySyncer.getInstance().getLogger().warning("player not found");
-				MessageSender.sendMessage(player, ChatColor.RED + "Player not found");
-			}
-			
-			assert player != null;
-			
-			try {
-				if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql")) {
-					InventoryWriter.writeInvToDB(player);
-				} else {
-					InventoryWriter.writeInvToFile(player);
+			Player player = Bukkit.getPlayer(strings[0]);
+
+			if (player != null) {
+				try {
+					if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql")) {
+						InventoryWriter.writeInvToDB(player);
+					}
+					else {
+						InventoryWriter.writeInvToFile(player);
+					}
 				}
-			} catch (IOException var7) {
-				InventorySyncer.getInstance().getLogger().warning("Error writing player " + player.getUniqueId() + " (" + player.getName() + ") inventory");
-				MessageSender.sendMessage(player, ChatColor.RED + "Error writing player " + player.getUniqueId() + " (" + player.getName() + ") inventory");
-				var7.printStackTrace();
+				catch (IOException var7) {
+					InventorySyncer.getInstance().getLogger().warning("Error writing player " + player.getUniqueId() + " (" + player.getName() + ") inventory");
+					MessageSender.sendMessage(player, ChatColor.RED + "Error writing player " + player.getUniqueId() + " (" + player.getName() + ") inventory");
+					var7.printStackTrace();
+				}
+				
+				MessageSender.sendMessage(player, ChatColor.GREEN + "Successfully wrote player's inventory");
+			} else {
+				InventorySyncer.getInstance().getLogger().warning("Player '" + strings[0] + "' not found");
+				MessageSender.sendMessage(commandSender, ChatColor.RED + "Player '" + strings[0] + "' not found");
 			}
 			
-			MessageSender.sendMessage(player, ChatColor.GREEN + "Successfully wrote player's inventory");
-		} else {
+		}
+		else {
 			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /writeinv <player>");
 		}
 		return true;
 	}
+	
 }
