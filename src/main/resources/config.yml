@@ -28,6 +28,13 @@ sqlCredentials:
 #Whether to save inventory of all players when stopping server
 saveAllOnServerStop: true
 
+#What sync to trigger when player joins and leaves
+#These parameters can be either true or false
+#Setting one to false would mean that you will have to do it manually with /writeec or /writeinv and /syncec or /syncinv commands
+syncOnJoinAndLeave:
+  ec: true
+  inv: true
+
 #Parameters for the synchronization
 syncParameters:
   #The following parameters can be either true or false
@@ -46,6 +53,8 @@ syncParameters:
   syncEffects: true
 
 #Whether a player can pick up items while the plugin is synchronizing his inventory
-#/!\ WARNING : When the plugin synchronizes an inventory, it clears it completely /!\
-#Enabling this would cause items loss issues
+#/!\ The plugin cleans entirely the inventory when synchronising it /!\
+#/!\ Enabling this would cause items loss issues /!\
+#The value of this parameter is only used if you have syncOnJoinAndLeave.inv set to true,
+#If it's not, then this parameter will be unused
 enablePickUpOnSync: false
