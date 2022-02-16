@@ -6,6 +6,10 @@ prefix: InventorySyncer
 authors: [ MaximeLeBonniec, bouchbi_ ]
 description: InventorySyncer is a minecraft plugin to sync inventory between many servers. It works as a bridge with SQL connection.
 commands:
+  reload:
+    description: Reloads the plugin
+    usage: /InventorySyncer reload
+    permission: inventorySyncer.reload
   syncInv:
     description: SyncInv is a command to force the Sync of a player's inventory
     usage: /syncinv <player>

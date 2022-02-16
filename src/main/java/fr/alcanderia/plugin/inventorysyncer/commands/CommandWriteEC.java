@@ -12,13 +12,14 @@ import java.util.*;
 public class CommandWriteEC implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-		if (strings.length > 0) {
+		if (strings.length == 1) {
 			Player player = null;
 			
 			try {
 				player = Bukkit.getPlayer(strings[0]);
 			} catch (NullPointerException var8) {
 				InventorySyncer.getInstance().getLogger().warning("player not found");
+				MessageSender.sendMessage(player, "Player not found");
 			}
 			
 			assert player != null;
@@ -30,12 +31,15 @@ public class CommandWriteEC implements CommandExecutor {
 					InventoryWriter.writeECToFile(player);
 				}
 			} catch (IOException var7) {
-				InventorySyncer.getInstance().getLogger().warning("Error writing player " + player.getUniqueId() + " (" + player.getName() + ") inv");
+				InventorySyncer.getInstance().getLogger().warning("Error writing player " + player.getUniqueId() + " (" + player.getName() + ") ender chest inventory");
+				MessageSender.sendMessage(player, ChatColor.RED + "Error writing player " + player.getUniqueId() + " (" + player.getName() + ") ender chest inventory");
 				var7.printStackTrace();
 			}
 			
+			MessageSender.sendMessage(player, "Successfully wrote player's ender chest inventory");
 			return true;
 		} else {
+			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /writeec <player>");
 			return false;
 		}
 	}

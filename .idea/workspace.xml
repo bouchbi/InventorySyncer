@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="added option syncOnJoinAndLeave.ec and .inv">
+    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="fixed inv not restoring on join issue">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandReload.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/MessageSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/event/ListenPlayers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/event/ListenPlayers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncEC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncEC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncInv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncInv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandWriteEC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandWriteEC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandWriteInv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandWriteInv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../AlcaMainScreen" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -99,7 +106,7 @@
       <workItem from="1644921697873" duration="366000" />
       <workItem from="1644956014309" duration="3592000" />
       <workItem from="1644999872763" duration="1797000" />
-      <workItem from="1645001964690" duration="3867000" />
+      <workItem from="1645001964690" duration="7432000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1638564455181</created>
@@ -178,7 +185,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645003670378</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fixed inv not restoring on join issue">
+      <created>1645007849842</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1645007849842</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +228,7 @@
     <MESSAGE value="Ender chest sync (to complete w/ command)" />
     <MESSAGE value="commands for ec sync" />
     <MESSAGE value="added option syncOnJoinAndLeave.ec and .inv" />
-    <option name="LAST_COMMIT_MESSAGE" value="added option syncOnJoinAndLeave.ec and .inv" />
+    <MESSAGE value="fixed inv not restoring on join issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed inv not restoring on join issue" />
   </component>
 </project>

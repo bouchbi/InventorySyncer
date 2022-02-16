@@ -11,8 +11,9 @@ import java.io.*;
 import java.util.*;
 
 public class InventorySyncer extends JavaPlugin {
+	
 	private static InventorySyncer INSTANCE;
-	private static ConfigHandler config;
+	private static ConfigHandler   config;
 	
 	public void onLoad() {
 		this.saveDefaultConfig();
@@ -21,6 +22,7 @@ public class InventorySyncer extends JavaPlugin {
 	public void onEnable() {
 		this.getServer().getPluginManager().registerEvents(new ListenPlayers(), this);
 		config = new ConfigHandler(this);
+		this.getCommand("reload").setExecutor(new CommandReload());
 		this.getCommand("syncInv").setExecutor(new CommandSyncInv());
 		this.getCommand("writeInv").setExecutor(new CommandWriteInv());
 		this.getCommand("syncEC").setExecutor(new CommandSyncEC());
@@ -40,18 +42,19 @@ public class InventorySyncer extends JavaPlugin {
 				this.getLogger().info("initializing inventory syncing for all players before stopping server");
 				Bukkit.getOnlinePlayers().forEach(InventoryWriter::writeInvToDB);
 			}
-			else if (Objects.equals(config.getString("dataStorage"), "file")) {
-				this.getLogger().info("initializing inventory syncing for all players before stopping server");
-				Bukkit.getOnlinePlayers().forEach(player -> {
-					try {
-						InventoryWriter.writeInvToFile(player);
-					}
-					catch (IOException e) {
-						this.getLogger().warning("failed to write inv of player " + player.getUniqueId() + " (" + player.getName() + ") to file");
-						e.printStackTrace();
-					}
-				});
-			}
+			else
+				if (Objects.equals(config.getString("dataStorage"), "file")) {
+					this.getLogger().info("initializing inventory syncing for all players before stopping server");
+					Bukkit.getOnlinePlayers().forEach(player -> {
+						try {
+							InventoryWriter.writeInvToFile(player);
+						}
+						catch (IOException e) {
+							this.getLogger().warning("failed to write inv of player " + player.getUniqueId() + " (" + player.getName() + ") to file");
+							e.printStackTrace();
+						}
+					});
+				}
 		}
 		
 		if (Objects.equals(config.getString("dataStorage"), "mysql")) {
@@ -68,4 +71,5 @@ public class InventorySyncer extends JavaPlugin {
 	public static ConfigHandler getConfiguration() {
 		return config;
 	}
+	
 }

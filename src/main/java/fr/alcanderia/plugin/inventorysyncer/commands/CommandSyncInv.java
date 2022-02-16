@@ -22,8 +22,15 @@ public class CommandSyncInv implements CommandExecutor {
 			
 			assert player != null;
 			
-			return Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readInvAndApply(player, true) : InventoryReader.readInvAndApply(player, false);
+			if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readInvAndApply(player, true) : InventoryReader.readInvAndApply(player, false)) {
+				MessageSender.sendMessage(player, "Successfully sync player's inventory");
+				return true;
+			} else {
+				MessageSender.sendMessage(player, "There was an error while attempting to sync inv, please check console for further information");
+				return false;
+			}
 		} else {
+			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /syncinv <player>");
 			return false;
 		}
 	}

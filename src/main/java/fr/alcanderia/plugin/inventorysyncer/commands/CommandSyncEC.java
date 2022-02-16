@@ -11,7 +11,7 @@ import java.util.*;
 public class CommandSyncEC implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-		if (strings.length > 0) {
+		if (strings.length == 1) {
 			Player player = null;
 			
 			try {
@@ -22,8 +22,15 @@ public class CommandSyncEC implements CommandExecutor {
 			
 			assert player != null;
 			
-			return Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readECInvAndApply(player, true) : InventoryReader.readECInvAndApply(player, false);
+			if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readECInvAndApply(player, true) : InventoryReader.readECInvAndApply(player, false)) {
+				MessageSender.sendMessage(player, "Successfully sync player's ender chest");
+				return true;
+			} else {
+				MessageSender.sendMessage(player, "There was an error while attempting to sync ec, please check console for further information");
+				return false;
+			}
 		} else {
+			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /syncec <player>");
 			return false;
 		}
 	}

@@ -19,6 +19,7 @@ public class CommandWriteInv implements CommandExecutor {
 				player = Bukkit.getPlayer(strings[0]);
 			} catch (NullPointerException var8) {
 				InventorySyncer.getInstance().getLogger().warning("player not found");
+				MessageSender.sendMessage(player, "Player not found");
 			}
 			
 			assert player != null;
@@ -30,12 +31,15 @@ public class CommandWriteInv implements CommandExecutor {
 					InventoryWriter.writeInvToFile(player);
 				}
 			} catch (IOException var7) {
-				InventorySyncer.getInstance().getLogger().warning("Error writing player " + player.getUniqueId() + " (" + player.getName() + ") inv");
+				InventorySyncer.getInstance().getLogger().warning("Error writing player " + player.getUniqueId() + " (" + player.getName() + ") inventory");
+				MessageSender.sendMessage(player, ChatColor.RED + "Error writing player " + player.getUniqueId() + " (" + player.getName() + ") inventory");
 				var7.printStackTrace();
 			}
 			
+			MessageSender.sendMessage(player, "Successfully wrote player's inventory");
 			return true;
 		} else {
+			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /writeinv <player>");
 			return false;
 		}
 	}
