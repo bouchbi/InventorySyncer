@@ -1,7 +1,8 @@
 package fr.alcanderia.plugin.inventorysyncer.commands;
 
-import fr.alcanderia.plugin.inventorysyncer.*;
-import fr.alcanderia.plugin.inventorysyncer.services.*;
+import fr.alcanderia.plugin.inventorysyncer.InventorySyncer;
+import fr.alcanderia.plugin.inventorysyncer.services.InventoryReader;
+import fr.alcanderia.plugin.inventorysyncer.services.MessageSender;
 import org.bukkit.*;
 import org.bukkit.command.*;
 import org.bukkit.entity.*;
@@ -13,7 +14,7 @@ public class CommandSyncEC implements CommandExecutor {
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
 		if (strings.length == 1) {
 			Player player = Bukkit.getPlayer(strings[0]);
-			
+
 			if (player != null) {
 				if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readECInvAndApply(player, true) : InventoryReader.readECInvAndApply(player, false)) {
 					MessageSender.sendMessage(player, ChatColor.GREEN + "Successfully synchronised player's ender chest inventory");
@@ -31,5 +32,5 @@ public class CommandSyncEC implements CommandExecutor {
 		}
 		return true;
 	}
-	
+
 }

@@ -1,12 +1,16 @@
 package fr.alcanderia.plugin.inventorysyncer.commands;
 
-import fr.alcanderia.plugin.inventorysyncer.*;
-import fr.alcanderia.plugin.inventorysyncer.services.*;
-import org.bukkit.*;
-import org.bukkit.command.*;
-import org.bukkit.entity.*;
+import fr.alcanderia.plugin.inventorysyncer.InventorySyncer;
+import fr.alcanderia.plugin.inventorysyncer.services.InventoryReader;
+import fr.alcanderia.plugin.inventorysyncer.services.MessageSender;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
-import java.util.*;
+import java.util.Objects;
 
 public class CommandSyncInv implements CommandExecutor {
 	
@@ -31,5 +35,4 @@ public class CommandSyncInv implements CommandExecutor {
 		}
 		return true;
 	}
-	
 }

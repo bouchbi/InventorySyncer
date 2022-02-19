@@ -22,11 +22,17 @@ public class InventorySyncer extends JavaPlugin {
 	public void onEnable() {
 		this.getServer().getPluginManager().registerEvents(new ListenPlayers(), this);
 		config = new ConfigHandler(this);
+		this.getCommand("inventorySyncer").setExecutor(new CommandAll());
+		this.getCommand("inventorySyncer").setExecutor(new CommandAll());
 		this.getCommand("reloadISConfig").setExecutor(new CommandReload());
 		this.getCommand("syncInv").setExecutor(new CommandSyncInv());
+		this.getCommand("syncInv").setTabCompleter(new SyncsCommands());
 		this.getCommand("writeInv").setExecutor(new CommandWriteInv());
+		this.getCommand("writeInv").setTabCompleter(new SyncsCommands());
 		this.getCommand("syncEC").setExecutor(new CommandSyncEC());
+		this.getCommand("syncEC").setTabCompleter(new SyncsCommands());
 		this.getCommand("writeEC").setExecutor(new CommandWriteEC());
+		this.getCommand("writeEC").setTabCompleter(new SyncsCommands());
 		this.reloadConfig();
 		INSTANCE = this;
 		if (Objects.equals(config.getString("dataStorage"), "mysql")) {

@@ -1,11 +1,14 @@
 name: InventorySyncer
-version: '1.1.6'
+version: '1.1.7'
 main: fr.alcanderia.plugin.inventorysyncer.InventorySyncer
 api-version: 1.16
 prefix: InventorySyncer
 authors: [ MaximeLeBonniec, bouchbi_ ]
 description: InventorySyncer is a minecraft plugin to sync inventory between many servers. It works as a bridge with SQL connection.
 commands:
+  inventorySyncer:
+    description: Relay to all commands of the plugin
+    aliases: [is, isync, invsync]
   reloadISConfig:
     description: Reloads the plugin config
     permission: inventorySyncer.reload

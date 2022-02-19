@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="nullpointerexception in commands fixed + perms and reload cmd">
+    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="version update">
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandAll.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/SyncsCommands.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandReload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandReload.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncEC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncEC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncInv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncInv.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +43,14 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="InvalidFacetManager">
+    <ignored-facets>
+      <facet id="inventorysyncer/invalid/Minecraft" />
+    </ignored-facets>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="21msLbhjaAA2jddFgjQ4GtktHrH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -47,7 +61,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../AlcaMainScreen" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -56,7 +70,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.19195402" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -100,7 +114,14 @@
       <workItem from="1644921697873" duration="366000" />
       <workItem from="1644956014309" duration="3592000" />
       <workItem from="1644999872763" duration="1797000" />
-      <workItem from="1645001964690" duration="13520000" />
+      <workItem from="1645001964690" duration="13555000" />
+      <workItem from="1645035737865" duration="285000" />
+      <workItem from="1645096714351" duration="179000" />
+      <workItem from="1645096929403" duration="1003000" />
+      <workItem from="1645109612682" duration="1145000" />
+      <workItem from="1645124160544" duration="4688000" />
+      <workItem from="1645263824837" duration="946000" />
+      <workItem from="1645286007568" duration="1283000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1638564455181</created>
@@ -214,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645021215765</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="version update">
+      <created>1645022931056</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1645022931056</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +264,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
@@ -257,6 +284,7 @@
     <MESSAGE value="forgot version" />
     <MESSAGE value="nullpointerexception in commands fixed + perms and commands" />
     <MESSAGE value="nullpointerexception in commands fixed + perms and reload cmd" />
-    <option name="LAST_COMMIT_MESSAGE" value="nullpointerexception in commands fixed + perms and reload cmd" />
+    <MESSAGE value="version update" />
+    <option name="LAST_COMMIT_MESSAGE" value="version update" />
   </component>
 </project>

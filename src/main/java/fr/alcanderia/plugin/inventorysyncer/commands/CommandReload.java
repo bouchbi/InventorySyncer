@@ -6,8 +6,9 @@ import org.bukkit.*;
 import org.bukkit.command.*;
 
 public class CommandReload implements CommandExecutor {
-	
-	@Override public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+
+	@Override
+	public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
 		if (args.length == 0) {
 			InventorySyncer.getInstance().reloadConfig();
 			MessageSender.sendMessage(sender, ChatColor.GREEN + "Plugin reloaded");
@@ -16,5 +17,4 @@ public class CommandReload implements CommandExecutor {
 		}
 		return false;
 	}
-	
 }
