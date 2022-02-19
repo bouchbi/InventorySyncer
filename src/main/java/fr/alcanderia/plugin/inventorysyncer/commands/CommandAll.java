@@ -20,7 +20,7 @@ public class CommandAll implements CommandExecutor, TabCompleter {
 
         switch (args[0]) {
             case "reload":
-                return new CommandReload().onCommand(sender, command, label, args);
+                return new CommandReload().onCommand(sender, command, label, new String[0]);
             case "syncec":
                 return new CommandSyncEC().onCommand(sender, command, label, Arrays.copyOfRange(args, 1, args.length));
             case "syncinv":
