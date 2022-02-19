@@ -1,5 +1,7 @@
 package fr.alcanderia.plugin.inventorysyncer;
 
+import org.bukkit.configuration.Configuration;
+
 import java.io.*;
 
 public class ConfigHandler {
@@ -48,5 +50,14 @@ public class ConfigHandler {
 		} else {
 			return this.plugin.getConfig().getBoolean(key);
 		}
+	}
+
+	public void updateConfig() {
+		Configuration defaults = plugin.getConfig().getDefaults();
+		for (String defaultKey : defaults.getKeys(true)) {
+			if (!plugin.getConfig().contains(defaultKey))
+				plugin.getConfig().set(defaultKey, defaults.get(defaultKey));
+		}
+		plugin.saveConfig();
 	}
 }

@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="version update">
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandAll.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/SyncsCommands.java" afterDir="false" />
+    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="tab completion + core command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/ConfigHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/ConfigHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/InventorySyncer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandReload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandReload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncEC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncEC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncInv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandSyncInv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandAll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/commands/CommandAll.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +119,7 @@
       <workItem from="1645109612682" duration="1145000" />
       <workItem from="1645124160544" duration="4688000" />
       <workItem from="1645263824837" duration="946000" />
-      <workItem from="1645286007568" duration="1283000" />
+      <workItem from="1645286007568" duration="3855000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1638564455181</created>
@@ -242,7 +240,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645022931056</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="tab completion + core command">
+      <created>1645287388164</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1645287388164</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,6 +290,7 @@
     <MESSAGE value="nullpointerexception in commands fixed + perms and commands" />
     <MESSAGE value="nullpointerexception in commands fixed + perms and reload cmd" />
     <MESSAGE value="version update" />
-    <option name="LAST_COMMIT_MESSAGE" value="version update" />
+    <MESSAGE value="tab completion + core command" />
+    <option name="LAST_COMMIT_MESSAGE" value="tab completion + core command" />
   </component>
 </project>

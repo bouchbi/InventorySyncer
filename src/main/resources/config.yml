@@ -4,6 +4,10 @@
 #                                        #
 ##########################################
 
+#/!\ Do not Change this setting /!\
+configversion: 1
+
+
 #Select the data storage (.txt files in local or in database)
 #Valid values are 'file', 'mysql'
 dataStorage: 'file'

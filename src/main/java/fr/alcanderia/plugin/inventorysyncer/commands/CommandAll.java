@@ -18,7 +18,7 @@ public class CommandAll implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        switch (args[1]) {
+        switch (args[0]) {
             case "reload":
                 return new CommandReload().onCommand(sender, command, label, args);
             case "syncec":
