@@ -3,7 +3,7 @@ version: '1.1.8'
 main: fr.alcanderia.plugin.inventorysyncer.InventorySyncer
 api-version: 1.16
 prefix: InventorySyncer
-authors: [ MaximeLeBonniec, bouchbi_ ]
+authors: [ bouchbi_, MaximeLeBonniec ]
 description: InventorySyncer is a minecraft plugin to sync inventory between many servers. It works as a bridge with SQL connection.
 commands:
   inventorySyncer:
@@ -12,18 +12,23 @@ commands:
   reloadISConfig:
     description: Reloads the plugin config
     permission: inventorySyncer.reload
+    aliases: [risconf, risc]
   syncInv:
     description: SyncInv is a command to force the Sync of a player's inventory
     permission: inventorySyncer.syncInv
+    aliases: [synchroniseinv, synchroniseinventory, si, syncinventory]
   writeInv:
     description: WriteInv is a command to force write a pLayer's inventory into the database
     permission: inventorySyncer.writeInv
+    aliases: [writeinventory, wi, winv]
   syncEC:
     description: SyncEC is a command to force the Sync of a player's ender chest's inventory
     permission: inventorySyncer.syncEC
+    aliases: [synchroniseec, synchroniseenderchest, sec]
   writeEC:
     description: WriteEC is a command to force write a player's ender chest's inventory into the database
     permission: inventorySyncer.writeEC
+    aliases: [writeenderchest, wec]
 permissions:
   inventorySyncer.reload:
     description: reload config file
