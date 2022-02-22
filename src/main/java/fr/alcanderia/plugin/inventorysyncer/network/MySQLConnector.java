@@ -54,13 +54,6 @@ public class MySQLConnector {
 		}
 	}
 	
-	public static void createTables() {
-		reopenIfClosed();
-		
-		createTable(invTabName);
-		createTable(ecTabName);
-	}
-	
 	public static String getUserInv(UUID id, String tabName) {
 		reopenIfClosed();
 		
@@ -195,7 +188,6 @@ public class MySQLConnector {
 		reopenIfClosed();
 		
 		ResultSet rs          = null;
-		int       candidateID = 0;
 		String    sqlInsert   = "INSERT INTO " + tabName + "(id, inv)VALUES(?, ?)";
 		String    sqlUpdate   = "UPDATE " + tabName + " SET inv = ? WHERE id = ?";
 		

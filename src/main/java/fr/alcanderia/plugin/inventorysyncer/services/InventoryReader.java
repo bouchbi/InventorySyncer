@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.*;
 
 public class InventoryReader {
-	
+
 	public static boolean readECInvAndApply(Player player, boolean toDB) {
 		try {
 			String inv = null;
@@ -22,14 +22,14 @@ public class InventoryReader {
 			} else {
 				inv = MySQLConnector.getUserInv(player.getUniqueId(), InventorySyncer.getConfiguration().getString("sqlCredentials.dbECTableName"));
 			}
-			
-			if (inv != null) {
+
+			if (!Objects.equals(inv, "empty")) {
 				long watchStart = System.currentTimeMillis();
-				player.getInventory().clear();
+				player.getEnderChest().clear();
 				inv = StringUtils.removeEnd(inv, ";");
 				String[] slots = inv.split(";");
 				int length = slots.length;
-				
+
 				for (int i = 0; i < length; i++) {
 					String slot = slots[i];
 					ItemStack stack;
@@ -38,19 +38,19 @@ public class InventoryReader {
 						BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
 						stack = (ItemStack)dataInput.readObject();
 						dataInput.close();
-					} catch (ClassNotFoundException var13) {
-						throw new IOException("Unable to decode class type", var13);
+					} catch (ClassNotFoundException e) {
+						throw new IOException("Unable to decode class type", e);
 					}
-					
+
 					player.getEnderChest().setItem(Integer.parseInt(slot.split("\\$")[0]), stack);
 				}
-				
+
 				long watchEnd = System.currentTimeMillis();
 				InventorySyncer.getInstance().getLogger().info("EC Inventory of player " + player.getUniqueId() + " (" + player.getName() + ") restored successfully, took " + (watchEnd - watchStart) + "ms");
 			} else {
 				InventorySyncer.getInstance().getLogger().warning("EC Inventory of player " + player.getUniqueId() + " (" + player.getName() + ") is null");
 			}
-			
+
 			return true;
 		} catch (IOException var15) {
 			InventorySyncer.getInstance().getLogger().warning("Error reading player " + player.getUniqueId() + " ec inv");
@@ -58,7 +58,7 @@ public class InventoryReader {
 			return false;
 		}
 	}
-	
+
 	public static boolean readInvAndApply(Player player, boolean toDB) {
 		try {
 			String inv = null;
@@ -67,7 +67,7 @@ public class InventoryReader {
 			} else {
 				inv = MySQLConnector.getUserInv(player.getUniqueId(), InventorySyncer.getConfiguration().getString("sqlCredentials.dbInvTableName"));
 			}
-			
+
 			if (inv != null) {
 				long watchStart = System.currentTimeMillis();
 				player.getInventory().clear();
@@ -75,7 +75,7 @@ public class InventoryReader {
 				String[] slots = inv.split(";");
 				String[] var6 = slots;
 				int var7 = slots.length;
-				
+
 				for(int var8 = 0; var8 < var7; ++var8) {
 					String slot = var6[var8];
 					if (slot.contains("PlayerXP")) {
@@ -107,17 +107,17 @@ public class InventoryReader {
 						} catch (ClassNotFoundException var13) {
 							throw new IOException("Unable to decode class type", var13);
 						}
-						
+
 						player.getInventory().setItem(Integer.parseInt(slot.split("\\$")[0]), stack);
 					}
 				}
-				
+
 				long watchEnd = System.currentTimeMillis();
 				InventorySyncer.getInstance().getLogger().info("Inventory of player " + player.getUniqueId() + " (" + player.getName() + ") restored successfully, took " + (watchEnd - watchStart) + "ms");
 			} else {
 				InventorySyncer.getInstance().getLogger().warning("Inventory of player " + player.getUniqueId() + " (" + player.getName() + ") is null");
 			}
-			
+
 			return true;
 		} catch (IOException var15) {
 			InventorySyncer.getInstance().getLogger().warning("Error reading player " + player.getUniqueId() + " inv");
