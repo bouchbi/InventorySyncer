@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="updated aliases">
+    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="fixed bug synchro d'inventaire d'ec, OutOfBound on null ec inv">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/network/MySQLConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/network/MySQLConnector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/InventoryReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/InventoryReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/services/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +124,15 @@
       <workItem from="1645474687749" duration="891000" />
       <workItem from="1645528030258" duration="17000" />
       <workItem from="1645558423035" duration="1079000" />
-      <workItem from="1645559656641" duration="1996000" />
+      <workItem from="1645559656641" duration="2496000" />
+      <workItem from="1645563278634" duration="795000" />
+      <workItem from="1645618702627" duration="108000" />
+      <workItem from="1645642840879" duration="614000" />
+      <workItem from="1645652045651" duration="34000" />
+      <workItem from="1645700388188" duration="9000" />
+      <workItem from="1645702163255" duration="621000" />
+      <workItem from="1645825748064" duration="16000" />
+      <workItem from="1646070414890" duration="311000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1638564455181</created>
@@ -275,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645291509200</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixed bug synchro d'inventaire d'ec, OutOfBound on null ec inv">
+      <created>1645561735540</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1645561735540</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,6 +335,7 @@
     <MESSAGE value="fixed core commands links + config version" />
     <MESSAGE value="fixed reload in core command not working (args passed where should be 0)" />
     <MESSAGE value="updated aliases" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated aliases" />
+    <MESSAGE value="fixed bug synchro d'inventaire d'ec, OutOfBound on null ec inv" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed bug synchro d'inventaire d'ec, OutOfBound on null ec inv" />
   </component>
 </project>
