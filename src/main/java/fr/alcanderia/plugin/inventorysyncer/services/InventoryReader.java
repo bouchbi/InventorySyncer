@@ -14,13 +14,13 @@ import java.util.*;
 
 public class InventoryReader {
 
-    public static boolean readECInvAndApply(Player player, boolean toDB) {
+    public static boolean readECInvAndApply(Player player, boolean toDB, boolean backup) {
         try {
             String inv = null;
             if (!toDB) {
                 inv = Parser.readFile(player.getUniqueId(), true);
             } else {
-                inv = MySQLConnector.getUserInv(player.getUniqueId(), InventorySyncer.getConfiguration().getString("sqlCredentials.dbECTableName"));
+                inv = MySQLConnector.getUserInv(player.getUniqueId(), InventorySyncer.getConfiguration().getString("sqlCredentials.dbECTableName"), backup);
             }
 
             player.getEnderChest().clear();
@@ -59,13 +59,13 @@ public class InventoryReader {
         }
     }
 
-    public static boolean readInvAndApply(Player player, boolean toDB) {
+    public static boolean readInvAndApply(Player player, boolean toDB, boolean backup) {
         try {
             String inv = null;
             if (!toDB) {
                 inv = Parser.readFile(player.getUniqueId(), false);
             } else {
-                inv = MySQLConnector.getUserInv(player.getUniqueId(), InventorySyncer.getConfiguration().getString("sqlCredentials.dbInvTableName"));
+                inv = MySQLConnector.getUserInv(player.getUniqueId(), InventorySyncer.getConfiguration().getString("sqlCredentials.dbInvTableName"), backup);
             }
 
             if (inv != null) {

@@ -42,7 +42,9 @@ public class InventoryWriter {
 		float watchStart = (float)System.currentTimeMillis();
 		String json = Parser.StringifyInv(player);
 		UUID id = player.getUniqueId();
-		MySQLConnector.writeInv(id, json, InventorySyncer.getConfiguration().getString("sqlCredentials.dbInvTableName"));
+		String tabName = InventorySyncer.getConfiguration().getString("sqlCredentials.dbInvTableName");
+		MySQLConnector.writeInv(id, MySQLConnector.getUserInv(id, tabName, false), tabName, true);
+		MySQLConnector.writeInv(id, json, tabName, false);
 		float watchStop = (float)System.currentTimeMillis();
 		InventorySyncer.getInstance().getLogger().info("Inv of player " + id + " (" + player.getName() + ") saved successfully to database, took " + (watchStop - watchStart) + "ms");
 	}
@@ -51,7 +53,9 @@ public class InventoryWriter {
 		float watchStart = (float)System.currentTimeMillis();
 		String json = Parser.StringifyEC(player);
 		UUID id = player.getUniqueId();
-		MySQLConnector.writeInv(id, json, InventorySyncer.getConfiguration().getString("sqlCredentials.dbECTableName"));
+		String tabName = InventorySyncer.getConfiguration().getString("sqlCredentials.dbInvTableName");
+		MySQLConnector.writeInv(id, MySQLConnector.getUserInv(id, tabName, false), tabName, true);
+		MySQLConnector.writeInv(id, json, tabName, false);
 		float watchStop = (float)System.currentTimeMillis();
 		InventorySyncer.getInstance().getLogger().info("EC of player " + id + " (" + player.getName() + ") saved successfully to database, took " + (watchStop - watchStart) + "ms");
 	}

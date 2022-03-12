@@ -12,11 +12,12 @@ import java.util.*;
 public class CommandSyncEC implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-		if (strings.length == 1) {
+		if (strings.length == 2 && strings[1].equals("backup") || strings.length == 2 && strings[1].equals("normal")) {
 			Player player = Bukkit.getPlayer(strings[0]);
+			boolean backup = strings[1].equals("backup");
 
 			if (player != null) {
-				if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readECInvAndApply(player, true) : InventoryReader.readECInvAndApply(player, false)) {
+				if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readECInvAndApply(player, true, backup) : InventoryReader.readECInvAndApply(player, false, backup)) {
 					MessageSender.sendMessage(player, ChatColor.GREEN + "Successfully synchronised player's ender chest inventory");
 				}
 				else {
@@ -28,7 +29,7 @@ public class CommandSyncEC implements CommandExecutor {
 			}
 		}
 		else {
-			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /syncec <player>");
+			MessageSender.sendMessage(commandSender, ChatColor.RED + "Correct usage is /syncec <player> <backup|normal>");
 		}
 		return true;
 	}

@@ -14,7 +14,7 @@ public class InventorySyncer extends JavaPlugin {
 
     private static InventorySyncer INSTANCE;
     private static ConfigHandler config;
-    private static final int configVerion = 1;
+    private static final int configVersion = 1;
 
     public void onLoad() {
         this.saveDefaultConfig();
@@ -25,7 +25,7 @@ public class InventorySyncer extends JavaPlugin {
         config = new ConfigHandler(this);
         registerCommands();
         this.reloadConfig();
-        if (this.getConfig().getInt("configversion") != configVerion)
+        if (this.getConfig().getInt("configversion") != configVersion)
             config.updateConfig();
         INSTANCE = this;
         if (Objects.equals(config.getString("dataStorage"), "mysql")) {

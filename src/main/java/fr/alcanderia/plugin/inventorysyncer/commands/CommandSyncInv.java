@@ -15,11 +15,12 @@ import java.util.Objects;
 public class CommandSyncInv implements CommandExecutor {
 	
 	public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-		if (strings.length == 1) {
+		if (strings.length == 2 && strings[1].equals("backup") || strings.length == 2 && strings[1].equals("normal")) {
 			Player player = Bukkit.getPlayer(strings[0]);
+			boolean backup = strings[1].equals("backup");
 			
 			if (player != null) {
-				if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readInvAndApply(player, true) : InventoryReader.readInvAndApply(player, false)) {
+				if (Objects.equals(InventorySyncer.getConfiguration().getString("dataStorage"), "mysql") ? InventoryReader.readInvAndApply(player, true, backup) : InventoryReader.readInvAndApply(player, false, backup)) {
 					MessageSender.sendMessage(player, ChatColor.GREEN + "Successfully synchronised player's inventory");
 				}
 				else {
