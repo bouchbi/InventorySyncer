@@ -26,7 +26,7 @@ public class MySQLConnector {
                 Statement stmt = con.createStatement();
 
                 try {
-                    String sql = "CREATE TABLE " + tabName + "(id VARCHAR(40) not NULL, name VARCHAR(25) DEFAULT NULL,  inv BLOB(50000) DEFAULT NULL, backup BLOB(50000) DEFAULT NULL)";
+                    String sql = "CREATE TABLE " + tabName + "(id VARCHAR(40) not NULL,  inv BLOB(50000) DEFAULT NULL, backup BLOB(50000) DEFAULT NULL)";
                     stmt.executeUpdate(sql);
                     logger.info("Successfully created " + tabName + " table in given database");
                 } catch (SQLException e) {
@@ -173,8 +173,8 @@ public class MySQLConnector {
     public static void writeInv(UUID id, String inv, String tabName, boolean backup) {
 
         ResultSet rs = null;
-        String sqlInsert = "INSERT INTO " + tabName + "(id, " + (backup ? "backup" : "inv") + ")VALUES(?, ?)";
-        String sqlUpdate = "UPDATE " + tabName + " SET " + (backup ? "backup" : "inv") + "= ? WHERE id = ?";
+        String sqlInsert = "INSERT INTO " + tabName + "(id, inv, backup)VALUES(?, ?, ?)";
+        String sqlUpdate = "UPDATE " + tabName + " SET " + (backup ? "backup" : "inv") + " = ? WHERE id = ?";
 
         try {
             PreparedStatement pst = con.prepareStatement(checkExistingInv(id, tabName) ? sqlUpdate : sqlInsert);
@@ -190,6 +190,7 @@ public class MySQLConnector {
                 } else {
                     pst.setString(1, id.toString());
                     pst.setBlob(2, blob);
+                    pst.setBlob(3, blob);
                 }
 
                 pst.executeUpdate();
