@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="switched to blob + tried fix timeout">
+    <list default="true" id="3e286472-89f9-4efb-8d30-671910109675" name="Changes" comment="backup column added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/network/MySQLConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/fr/alcanderia/plugin/inventorysyncer/network/MySQLConnector.java" afterDir="false" />
     </list>
@@ -132,7 +132,8 @@
       <workItem from="1645825748064" duration="16000" />
       <workItem from="1646070414890" duration="948000" />
       <workItem from="1647077067048" duration="414000" />
-      <workItem from="1647077509854" duration="4083000" />
+      <workItem from="1647077509854" duration="4787000" />
+      <workItem from="1647287617232" duration="438000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1638564455181</created>
@@ -302,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647082337138</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="backup column added">
+      <created>1647082586822</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1647082586822</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,7 +334,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="workspace" />
     <MESSAGE value="Items Pick Up prevention" />
     <MESSAGE value="Reopen connexion if expired on task" />
     <MESSAGE value="Remapped errors" />
@@ -351,6 +358,7 @@
     <MESSAGE value="fixed bug synchro d'inventaire d'ec, OutOfBound on null ec inv" />
     <MESSAGE value="fixed bug de dupli avec ec empty" />
     <MESSAGE value="switched to blob + tried fix timeout" />
-    <option name="LAST_COMMIT_MESSAGE" value="switched to blob + tried fix timeout" />
+    <MESSAGE value="backup column added" />
+    <option name="LAST_COMMIT_MESSAGE" value="backup column added" />
   </component>
 </project>

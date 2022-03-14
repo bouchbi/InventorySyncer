@@ -21,6 +21,8 @@ public class MySQLConnector {
     private static Connection con;
 
     public static void createTable(String tabName) {
+        reopenIfclosed();
+
         if (tabName != null) {
             try {
                 Statement stmt = con.createStatement();
@@ -53,6 +55,7 @@ public class MySQLConnector {
     }
 
     public static String getUserInv(UUID id, String tabName, boolean backup) {
+        reopenIfclosed();
 
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM " + tabName);
@@ -119,6 +122,7 @@ public class MySQLConnector {
     }
 
     public static boolean checkExistingInv(UUID id, String tabName) {
+        reopenIfclosed();
 
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM " + tabName);
@@ -171,6 +175,7 @@ public class MySQLConnector {
     }
 
     public static void writeInv(UUID id, String inv, String tabName, boolean backup) {
+        reopenIfclosed();
 
         ResultSet rs = null;
         String sqlInsert = "INSERT INTO " + tabName + "(id, inv, backup)VALUES(?, ?, ?)";
@@ -225,19 +230,18 @@ public class MySQLConnector {
 
     }
 
+    public static void reopenIfclosed() {
+        try {
+            con.getNetworkTimeout();
+        } catch (SQLException e) {
+            logger.warning("Connexion timed out, plugin will attempt to close and reopen it");
+            closeConnexion();
+            openConnexion();
+        }
+    }
+
     public static void initConnexion() {
         Connection con = openConnexion();
-
-        try {
-            con.setNetworkTimeout(command -> {
-                logger.warning("Connexion timed out, closing and reopening it");
-                MySQLConnector.closeConnexion();
-                MySQLConnector.openConnexion();
-            }, 10000);
-        } catch (SQLException e) {
-            logger.warning("Cannot set timeout");
-            e.printStackTrace();
-        }
 
         try {
             if (!checkTableExistence(invTabName)) {
